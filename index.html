@@ -12,7 +12,6 @@
             --barca-color: #a70032;
             --gold: #ffd700;
         }
-
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
             background: radial-gradient(circle at center, #2d5a27 0%, #1a3a16 100%);
@@ -24,25 +23,31 @@
             min-height: 100vh;
             padding: 20px;
         }
-
-        /* Contenedor Principal */
         .stadium-card {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             border: 2px solid var(--gold);
             border-radius: 20px;
             padding: 30px;
             max-width: 700px;
             width: 100%;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            box-shadow: 0 0 30px rgba(0,0,0,0.6);
             backdrop-filter: blur(10px);
         }
-
-        h1 { text-align: center; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); }
-        .subtitle { text-align: center; font-size: 0.9em; opacity: 0.8; margin-bottom: 25px; }
-
+        h1 { 
+            text-align: center; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            color: var(--gold); 
+            margin-bottom: 5px;
+        }
+        .subtitle { 
+            text-align: center; 
+            font-size: 0.95em; 
+            opacity: 0.8; 
+            margin-bottom: 25px; 
+        }
         .form-group { margin-bottom: 20px; }
         label { display: block; margin-bottom: 8px; font-weight: bold; }
-
         input, input[type="number"] {
             width: 100%;
             padding: 12px;
@@ -52,9 +57,12 @@
             color: white;
             box-sizing: border-box;
         }
-
-        /* Estilo Radio Buttons Novedoso */
-        .teams-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
+        .teams-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+            margin-top: 10px; 
+        }
         .team-option {
             border: 2px solid #444;
             border-radius: 12px;
@@ -65,14 +73,20 @@
         }
         .team-option:hover { background: rgba(255,255,255,0.05); }
         input[type="radio"] { display: none; }
-        
-        input[type="radio"]:checked + .team-option.madrid { border-color: var(--madrid-color); background: rgba(58, 134, 255, 0.2); }
-        input[type="radio"]:checked + .team-option.barca { border-color: var(--barca-color); background: rgba(167, 0, 50, 0.2); }
-
-        /* Errores */
-        .error-msg { color: #ff4d4d; font-size: 0.85em; margin-top: 5px; display: none; }
-
-        /* Botón Enviar */
+        input[type="radio"]:checked + .team-option.madrid { 
+            border-color: var(--madrid-color); 
+            background: rgba(58, 134, 255, 0.25); 
+        }
+        input[type="radio"]:checked + .team-option.barca { 
+            border-color: var(--barca-color); 
+            background: rgba(167, 0, 50, 0.25); 
+        }
+        .error-msg { 
+            color: #ff4d4d; 
+            font-size: 0.85em; 
+            margin-top: 5px; 
+            display: none; 
+        }
         button {
             width: 100%;
             padding: 15px;
@@ -83,59 +97,83 @@
             cursor: pointer;
             transition: 0.3s;
             margin-top: 20px;
+            font-size: 1.1em;
         }
-        button:disabled { background: #333; color: #777; cursor: not-allowed; opacity: 0.5; }
-        button:enabled { background: var(--gold); color: black; box-shadow: 0 0 15px var(--gold); }
-
-        /* Gráfico */
-        .chart-container { margin-top: 40px; border-top: 1px solid #333; padding-top: 20px; }
+        button:disabled { 
+            background: #333; 
+            color: #777; 
+            cursor: not-allowed; 
+        }
+        button:enabled { 
+            background: var(--gold); 
+            color: black; 
+            box-shadow: 0 0 15px var(--gold); 
+        }
+        .chart-container { 
+            margin-top: 40px; 
+            border-top: 1px solid #333; 
+            padding-top: 20px; 
+        }
         .bar-wrapper { margin-bottom: 15px; }
-        .bar-label { display: flex; justify-content: space-between; margin-bottom: 5px; }
-        .bar-bg { background: #222; border-radius: 10px; height: 20px; overflow: hidden; }
-        .bar-fill { height: 100%; width: 0%; transition: width 1s ease-out; }
-
-        .signature { text-align: center; margin-top: 30px; font-size: 0.8em; color: var(--gold); opacity: 0.7; }
-
-        @media (max-width: 390px) {
-            .teams-grid { grid-template-columns: 1fr; }
-            .stadium-card { padding: 15px; }
+        .bar-label { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 5px; 
+            font-weight: 600;
+        }
+        .bar-bg { 
+            background: #222; 
+            border-radius: 10px; 
+            height: 28px; 
+            overflow: hidden; 
+        }
+        .bar-fill { 
+            height: 100%; 
+            width: 0%; 
+            transition: width 1s ease-out; 
+        }
+        .signature { 
+            text-align: center; 
+            margin-top: 30px; 
+            font-size: 0.85em; 
+            color: var(--gold); 
+            opacity: 0.7; 
         }
     </style>
 </head>
 <body>
-
 <div class="stadium-card">
     <h1>¿Qué equipo prefieres?</h1>
     <p class="subtitle">Por favor complete todos los campos para votar</p>
-
+    
     <form id="surveyForm">
         <div class="form-group">
             <label>¿Cuál es tu nombre? *</label>
-            <input type="text" id="name" placeholder="Nombre y apellido" autocomplete="off">
+            <input type="text" id="name" placeholder="Nombre y apellido" autocomplete="off" required>
             <div id="nameError" class="error-msg">Ingrese solo letras y espacios</div>
         </div>
-
+        
         <div class="form-group">
             <label>¿Cuántos años tienes? *</label>
-            <input type="text" id="age" placeholder="Edad" inputmode = "numeric" autocomplete="off">
+            <input type="text" id="age" placeholder="Edad" inputmode="numeric" autocomplete="off" required>
             <div id="ageError" class="error-msg">Ingrese solo números</div>
         </div>
-
+        
         <div class="form-group">
             <label>¿Qué equipo prefieres? *</label>
             <div class="teams-grid">
                 <label>
-                    <input type="radio" name="team" value="madrid">
+                    <input type="radio" name="team" value="madrid" required>
                     <div class="team-option madrid">Real Madrid</div>
                 </label>
                 <label>
-                    <input type="radio" name="team" value="barca">
+                    <input type="radio" name="team" value="barca" required>
                     <div class="team-option barca">Barcelona</div>
                 </label>
             </div>
         </div>
 
-        <button type="button" id="submitBtn" disabled>Enviar Voto</button>
+        <button type="submit" id="submitBtn" disabled>Enviar Voto</button>
     </form>
 
     <div class="chart-container">
@@ -149,116 +187,110 @@
             <div class="bar-bg"><div id="barBarca" class="bar-fill" style="background: var(--barca-color);"></div></div>
         </div>
     </div>
-
+    
     <div class="signature">Encuesta elaborada por Brayan Alcibar</div>
 </div>
 
-<!-- Carga de librerías de Firebase (v10+) -->
+<!-- Firebase SDK -->
 <script type="module">
-  import { initializeApp } from "https://jsdelivr.net";
-  import { getFirestore, doc, onSnapshot, updateDoc, increment, setDoc} from "https://jsdelivr.net";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, addDoc, onSnapshot, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  // 1. REEMPLAZA ESTO CON TUS CREDENCIALES COPIADAS DE FIREBASE
-  const firebaseConfig = {
-    apiKey: "AIzaSyDCnn6zskVJeUUn5N9VKfk9eFdKz94DZdw",
-    authDomain: "encuesta-deportiva-d8e8a.firebaseapp.com",
-    projectId: "encuesta-deportiva-d8e8a",
-    storageBucket: "encuesta-deportiva-d8e8a",
-    messagingSenderId: "518624866592",
-    appId: "1:518624866592:web:a11bcb4299f7366b1c2745"
-  };
+    // ==================== CONFIGURACIÓN FIREBASE ====================
+    const firebaseConfig = {
+        apiKey: "AIzaSyDCnn6zskVJeUUn5N9VKfk9eFdKz94DZdw",
+        authDomain: "encuesta-deportiva-d8e8a.firebaseapp.com",
+        projectId: "encuesta-deportiva-d8e8a",
+        storageBucket: "encuesta-deportiva-d8e8a.appspot.com",
+        messagingSenderId: "518624866592",
+        appId: "1:518624866592:web:a11bcb4299f7366b1c2745"
+    };
 
-  // 2. Inicialización
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  const docRef = doc(db, "encuestas", "votos_equipos");
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const encuestasRef = collection(db, "votos_deportivos");
 
-  // 3. Escuchar votos en TIEMPO REAL
-  onSnapshot(docRef, (docSnap) => {
-    if (docSnap.exists()) {
-      window.votes = docSnap.data(); // Actualiza la variable global
-      if (typeof updateChart === "function") updateChart(); 
-    } else {
-      // Si no existe el documento, lo crea en ceros
-      setDoc(docRef, { madrid: 0, barca: 0 });
+    // ==================== ESCUCHA EN TIEMPO REAL ====================
+    let votes = { madrid: 0, barca: 0 };
+
+    onSnapshot(encuestasRef, (snapshot) => {
+        votes = { madrid: 0, barca: 0 };
+        
+        snapshot.docs.forEach(doc => {
+            const data = doc.data();
+            if (data.equipo === "madrid") votes.madrid++;
+            if (data.equipo === "barca") votes.barca++;
+        });
+
+        updateChart();
+    });
+
+    // ==================== FUNCIONES ====================
+    function updateChart() {
+        const total = votes.madrid + votes.barca;
+        const pMadrid = total === 0 ? 0 : (votes.madrid / total) * 100;
+        const pBarca = total === 0 ? 0 : (votes.barca / total) * 100;
+
+        document.getElementById('barMadrid').style.width = pMadrid + '%';
+        document.getElementById('barBarca').style.width = pBarca + '%';
+        document.getElementById('countMadrid').innerText = votes.madrid;
+        document.getElementById('countBarca').innerText = votes.barca;
     }
-  });
 
-  // 4. Función global para enviar el voto a la nube
-  window.enviarVotoReal = async (equipo) => {
-    try {
-      await updateDoc(docRef, { [equipo]: increment(1) });
-    } catch (e) {
-      console.error("Error al votar:", e);
-    }
-  };
-</script>
-
-    
-<script>
+    // ==================== ENVÍO DEL FORMULARIO ====================
     const form = document.getElementById('surveyForm');
-    const nameInput = document.getElementById('name');
-    const ageInput = document.getElementById('age');
     const submitBtn = document.getElementById('submitBtn');
 
-    // Bloqueo de teclas para el Nombre (Solo letras y espacios)
-nameInput.addEventListener('keypress', (e) => {
-    const reg = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
-    if (!reg.test(e.key)) e.preventDefault();
-});
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-// Bloqueo de teclas para la Edad (Solo números)
-ageInput.addEventListener('keypress', (e) => {
-    if (!/[0-9]/.test(e.key)) e.preventDefault();
-});
+        const name = document.getElementById('name').value.trim();
+        const age = document.getElementById('age').value.trim();
+        const team = document.querySelector('input[name="team"]:checked').value;
 
-    
-    // Datos iniciales
-    let votes = { madrid: 0, barca: 0 }; // Algunos datos de ejemplo
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Enviando...";
 
-    function validate() {
-        const nameVal = nameInput.value;
-        const ageVal = ageInput.value;
+        try {
+            await addDoc(encuestasRef, {
+                nombre: name,
+                edad: parseInt(age),
+                equipo: team,
+                fecha: new Date()
+            });
+
+            alert("¡Voto registrado con éxito! ⚽");
+            form.reset();
+            validateForm();
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Hubo un error al enviar tu voto. Inténtalo de nuevo.");
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Enviar Voto";
+        }
+    });
+
+    // Validación en tiempo real
+    function validateForm() {
+        const nameVal = document.getElementById('name').value.trim();
+        const ageVal = document.getElementById('age').value.trim();
         const teamSelected = document.querySelector('input[name="team"]:checked');
-        
-        const isNameValid = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nameVal) && nameVal.trim() !== "";
-        const isAgeValid = /^[0-9]+$/.test(ageVal) && ageVal.trim() !== "";
-        
+
+        const isNameValid = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nameVal) && nameVal.length >= 3;
+        const isAgeValid = /^[0-9]+$/.test(ageVal) && parseInt(ageVal) >= 5 && parseInt(ageVal) <= 100;
+
         document.getElementById('nameError').style.display = (nameVal && !isNameValid) ? 'block' : 'none';
         document.getElementById('ageError').style.display = (ageVal && !isAgeValid) ? 'block' : 'none';
 
         submitBtn.disabled = !(isNameValid && isAgeValid && teamSelected);
     }
 
-    function updateChart() {
-    const total = votes.madrid + votes.barca;
-    
-    // Agregamos esta validación para evitar el error de "división por cero"
-    const pMadrid = total === 0 ? 0 : (votes.madrid / total) * 100;
-    const pBarca = total === 0 ? 0 : (votes.barca / total) * 100;
+    form.addEventListener('input', validateForm);
+    form.addEventListener('change', validateForm);
 
-    document.getElementById('barMadrid').style.width = pMadrid + '%';
-    document.getElementById('barBarca').style.width = pBarca + '%';
-    document.getElementById('countMadrid').innerText = votes.madrid;
-    document.getElementById('countBarca').innerText = votes.barca;
-}
-
-    }
-
-    form.addEventListener('input', validate);
-
-    submitBtn.addEventListener('click', () => {
-        const selected = document.querySelector('input[name="team"]:checked').value;
-        votes[selected]++;
-        updateChart();
-        alert("¡Voto registrado con éxito!");
-        form.reset();
-        validate();
-    });
-
-    // Inicializar gráfico
+    // Inicializar
     updateChart();
 </script>
-
 </body>
 </html>
